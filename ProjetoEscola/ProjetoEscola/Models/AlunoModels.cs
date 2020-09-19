@@ -25,6 +25,9 @@ namespace ProjetoEscola.Models
         [Required(ErrorMessage = "Informe o código da turma...")]
         public int CodigoTurma { get; set; }
 
+        [Required(ErrorMessage = "Informe a senha...")]
+        public String Senha { get; set; }
+
     }
 
     public class AlunoEditModels
@@ -44,5 +47,8 @@ namespace ProjetoEscola.Models
 
         [Required(ErrorMessage = "Informe a turma...")]
         public int CodigoTurma { get; set; }
+
+        [Required(ErrorMessage = "Informe a senha...")]
+        public String Senha { get; set; }
     }
 }

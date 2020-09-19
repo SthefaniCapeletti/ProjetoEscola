@@ -19,5 +19,7 @@ namespace ProjetoEscola.Models
 
         [Required(ErrorMessage = "Informe o status de atividade")]
         public Boolean Status { get; set; }
+
+        public Boolean Valido { get; set; }
     }
 }

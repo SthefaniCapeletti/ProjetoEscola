@@ -21,6 +21,9 @@ namespace ProjetoEscola.Models
 
         [Required(ErrorMessage = "Informe o usuário...")]
         public String Username { get; set; }
+
+        [Required(ErrorMessage = "Informe a senha...")]
+        public String Senha { get; set; }
     }
 
     public class DiretoriaEditModels
@@ -37,5 +40,8 @@ namespace ProjetoEscola.Models
         public DateTime DataNascimento { get; set; }
 
         public String Username { get; set; }
+
+        [Required(ErrorMessage = "Informe a senha...")]
+        public String Senha { get; set; }
     }
 }
