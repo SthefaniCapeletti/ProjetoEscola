@@ -1,0 +1,951 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="projetoescolaModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="aluno">
+          <Key>
+            <PropertyRef Name="ra_aluno" />
+          </Key>
+          <Property Name="ra_aluno" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="nm_aluno" Type="varchar" MaxLength="100" />
+          <Property Name="sb_aluno" Type="varchar" MaxLength="100" />
+          <Property Name="dt_nascimento_aluno" Type="date" />
+          <Property Name="username" Type="varchar" MaxLength="100" />
+          <Property Name="cd_turma" Type="int" />
+        </EntityType>
+        <EntityType Name="aluno_nota">
+          <Key>
+            <PropertyRef Name="cd_aluno_nota" />
+          </Key>
+          <Property Name="cd_aluno_nota" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ra_aluno" Type="varchar" MaxLength="100" />
+          <Property Name="cd_disciplina" Type="int" />
+          <Property Name="cd_bimestre" Type="int" />
+        </EntityType>
+        <EntityType Name="auxiliar">
+          <Key>
+            <PropertyRef Name="cpf_auxiliar" />
+          </Key>
+          <Property Name="cpf_auxiliar" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="nm_auxiliar" Type="varchar" MaxLength="100" />
+          <Property Name="sb_auxiliar" Type="varchar" MaxLength="100" />
+          <Property Name="dt_nascimento_auxiliar" Type="date" />
+          <Property Name="cd_categoria" Type="int" />
+        </EntityType>
+        <EntityType Name="bimestre">
+          <Key>
+            <PropertyRef Name="cd_bimestre" />
+          </Key>
+          <Property Name="cd_bimestre" Type="int" Nullable="false" />
+          <Property Name="nu_bimestre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="categoria_auxiliar">
+          <Key>
+            <PropertyRef Name="cd_categoria" />
+          </Key>
+          <Property Name="cd_categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dsc_categoria" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="categoria_disciplina">
+          <Key>
+            <PropertyRef Name="cd_categoria_disciplina" />
+          </Key>
+          <Property Name="cd_categoria_disciplina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dsc_categoria_disciplina" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="diretoria">
+          <Key>
+            <PropertyRef Name="cpf_direcao" />
+          </Key>
+          <Property Name="cpf_direcao" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="nm_direcao" Type="varchar" MaxLength="100" />
+          <Property Name="sb_direcao" Type="varchar" MaxLength="100" />
+          <Property Name="dt_nascimento_direcao" Type="date" />
+          <Property Name="username" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="disciplina">
+          <Key>
+            <PropertyRef Name="cd_disciplina" />
+          </Key>
+          <Property Name="cd_disciplina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nm_disciplina" Type="varchar" MaxLength="100" />
+          <Property Name="cd_categoria_disciplina" Type="int" />
+        </EntityType>
+        <EntityType Name="falta">
+          <Key>
+            <PropertyRef Name="cd_falta" />
+          </Key>
+          <Property Name="cd_falta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ra_aluno" Type="varchar" MaxLength="100" />
+          <Property Name="cd_bimestre" Type="int" />
+          <Property Name="qtde_falta" Type="int" />
+        </EntityType>
+        <EntityType Name="nivel_acesso">
+          <Key>
+            <PropertyRef Name="cd_nivel" />
+          </Key>
+          <Property Name="cd_nivel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dsc_nivel" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="professor">
+          <Key>
+            <PropertyRef Name="cpf_professor" />
+          </Key>
+          <Property Name="cpf_professor" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="nm_professor" Type="varchar" MaxLength="100" />
+          <Property Name="sb_professor" Type="varchar" MaxLength="100" />
+          <Property Name="dt_nascimento_professor" Type="date" />
+          <Property Name="username" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="professor_disciplina">
+          <Key>
+            <PropertyRef Name="cd_professor_disciplina" />
+          </Key>
+          <Property Name="cd_professor_disciplina" Type="int" Nullable="false" />
+          <Property Name="cpf_professor" Type="varchar" MaxLength="100" />
+          <Property Name="cd_disciplina" Type="int" />
+        </EntityType>
+        <EntityType Name="professor_turma">
+          <Key>
+            <PropertyRef Name="cd_prof_turma" />
+          </Key>
+          <Property Name="cd_prof_turma" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cpf_professor" Type="varchar" MaxLength="100" />
+          <Property Name="cd_turma" Type="int" />
+        </EntityType>
+        <EntityType Name="turma">
+          <Key>
+            <PropertyRef Name="cd_turma" />
+          </Key>
+          <Property Name="cd_turma" Type="int" Nullable="false" />
+          <Property Name="nu_turma" Type="varchar" MaxLength="10" />
+          <Property Name="sg_turma" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="senha" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="cd_nivel" Type="int" />
+          <Property Name="statuss" Type="bool" />
+        </EntityType>
+        <Association Name="aluno_fk">
+          <End Role="turma" Type="Self.turma" Multiplicity="0..1" />
+          <End Role="aluno" Type="Self.aluno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="turma">
+              <PropertyRef Name="cd_turma" />
+            </Principal>
+            <Dependent Role="aluno">
+              <PropertyRef Name="cd_turma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="alunonota_fk1">
+          <End Role="disciplina" Type="Self.disciplina" Multiplicity="0..1" />
+          <End Role="aluno_nota" Type="Self.aluno_nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="disciplina">
+              <PropertyRef Name="cd_disciplina" />
+            </Principal>
+            <Dependent Role="aluno_nota">
+              <PropertyRef Name="cd_disciplina" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="alunonota_fk2">
+          <End Role="bimestre" Type="Self.bimestre" Multiplicity="0..1" />
+          <End Role="aluno_nota" Type="Self.aluno_nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bimestre">
+              <PropertyRef Name="cd_bimestre" />
+            </Principal>
+            <Dependent Role="aluno_nota">
+              <PropertyRef Name="cd_bimestre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="auxiliar_fk">
+          <End Role="categoria_auxiliar" Type="Self.categoria_auxiliar" Multiplicity="0..1" />
+          <End Role="auxiliar" Type="Self.auxiliar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria_auxiliar">
+              <PropertyRef Name="cd_categoria" />
+            </Principal>
+            <Dependent Role="auxiliar">
+              <PropertyRef Name="cd_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="diretoria_fk">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="diretoria" Type="Self.diretoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="diretoria">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="disciplina_fk">
+          <End Role="categoria_disciplina" Type="Self.categoria_disciplina" Multiplicity="0..1" />
+          <End Role="disciplina" Type="Self.disciplina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria_disciplina">
+              <PropertyRef Name="cd_categoria_disciplina" />
+            </Principal>
+            <Dependent Role="disciplina">
+              <PropertyRef Name="cd_categoria_disciplina" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="falta_fk1">
+          <End Role="aluno" Type="Self.aluno" Multiplicity="0..1" />
+          <End Role="falta" Type="Self.falta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aluno">
+              <PropertyRef Name="ra_aluno" />
+            </Principal>
+            <Dependent Role="falta">
+              <PropertyRef Name="ra_aluno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="falta_fk2">
+          <End Role="bimestre" Type="Self.bimestre" Multiplicity="0..1" />
+          <End Role="falta" Type="Self.falta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bimestre">
+              <PropertyRef Name="cd_bimestre" />
+            </Principal>
+            <Dependent Role="falta">
+              <PropertyRef Name="cd_bimestre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="professor_fk">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="professor" Type="Self.professor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="professor">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="professordisciplina_fk1">
+          <End Role="professor" Type="Self.professor" Multiplicity="0..1" />
+          <End Role="professor_disciplina" Type="Self.professor_disciplina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="professor">
+              <PropertyRef Name="cpf_professor" />
+            </Principal>
+            <Dependent Role="professor_disciplina">
+              <PropertyRef Name="cpf_professor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="professordisciplina_fk2">
+          <End Role="disciplina" Type="Self.disciplina" Multiplicity="0..1" />
+          <End Role="professor_disciplina" Type="Self.professor_disciplina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="disciplina">
+              <PropertyRef Name="cd_disciplina" />
+            </Principal>
+            <Dependent Role="professor_disciplina">
+              <PropertyRef Name="cd_disciplina" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="professorturma_fk1">
+          <End Role="professor" Type="Self.professor" Multiplicity="0..1" />
+          <End Role="professor_turma" Type="Self.professor_turma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="professor">
+              <PropertyRef Name="cpf_professor" />
+            </Principal>
+            <Dependent Role="professor_turma">
+              <PropertyRef Name="cpf_professor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="professorturma_fk2">
+          <End Role="turma" Type="Self.turma" Multiplicity="0..1" />
+          <End Role="professor_turma" Type="Self.professor_turma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="turma">
+              <PropertyRef Name="cd_turma" />
+            </Principal>
+            <Dependent Role="professor_turma">
+              <PropertyRef Name="cd_turma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuario_fk">
+          <End Role="nivel_acesso" Type="Self.nivel_acesso" Multiplicity="0..1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nivel_acesso">
+              <PropertyRef Name="cd_nivel" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="cd_nivel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="projetoescolaModelStoreContainer">
+          <EntitySet Name="aluno" EntityType="Self.aluno" Schema="projetoescola" store:Type="Tables" />
+          <EntitySet Name="aluno_nota" EntityType="Self.aluno_nota" Schema="projetoescola" store:Type="Tables" />
+          <EntitySet Name="auxiliar" EntityType="Self.auxiliar" Schema="projetoescola" store:Type="Tables" />
+          <EntitySet Name="bimestre" EntityType="Self.bimestre" Schema="projetoescola" store:Type="Tables" />
+          <EntitySet Name="categoria_auxiliar" EntityType="Self.categoria_auxiliar" Schema="projetoescola" store:Type="Tables" />
+          <EntitySet Name="categoria_disciplina" EntityType="Self.categoria_disciplina" Schema="projetoescola" store:Type="Tables" />
+          <EntitySet Name="diretoria" EntityType="Self.diretoria" Schema="projetoescola" store:Type="Tables" />
+          <EntitySet Name="disciplina" EntityType="Self.disciplina" Schema="projetoescola" store:Type="Tables" />
+          <EntitySet Name="falta" EntityType="Self.falta" Schema="projetoescola" store:Type="Tables" />
+          <EntitySet Name="nivel_acesso" EntityType="Self.nivel_acesso" Schema="projetoescola" store:Type="Tables" />
+          <EntitySet Name="professor" EntityType="Self.professor" Schema="projetoescola" store:Type="Tables" />
+          <EntitySet Name="professor_disciplina" EntityType="Self.professor_disciplina" Schema="projetoescola" store:Type="Tables" />
+          <EntitySet Name="professor_turma" EntityType="Self.professor_turma" Schema="projetoescola" store:Type="Tables" />
+          <EntitySet Name="turma" EntityType="Self.turma" Schema="projetoescola" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="projetoescola" store:Type="Tables" />
+          <AssociationSet Name="aluno_fk" Association="Self.aluno_fk">
+            <End Role="turma" EntitySet="turma" />
+            <End Role="aluno" EntitySet="aluno" />
+          </AssociationSet>
+          <AssociationSet Name="alunonota_fk1" Association="Self.alunonota_fk1">
+            <End Role="disciplina" EntitySet="disciplina" />
+            <End Role="aluno_nota" EntitySet="aluno_nota" />
+          </AssociationSet>
+          <AssociationSet Name="alunonota_fk2" Association="Self.alunonota_fk2">
+            <End Role="bimestre" EntitySet="bimestre" />
+            <End Role="aluno_nota" EntitySet="aluno_nota" />
+          </AssociationSet>
+          <AssociationSet Name="auxiliar_fk" Association="Self.auxiliar_fk">
+            <End Role="categoria_auxiliar" EntitySet="categoria_auxiliar" />
+            <End Role="auxiliar" EntitySet="auxiliar" />
+          </AssociationSet>
+          <AssociationSet Name="diretoria_fk" Association="Self.diretoria_fk">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="diretoria" EntitySet="diretoria" />
+          </AssociationSet>
+          <AssociationSet Name="disciplina_fk" Association="Self.disciplina_fk">
+            <End Role="categoria_disciplina" EntitySet="categoria_disciplina" />
+            <End Role="disciplina" EntitySet="disciplina" />
+          </AssociationSet>
+          <AssociationSet Name="falta_fk1" Association="Self.falta_fk1">
+            <End Role="aluno" EntitySet="aluno" />
+            <End Role="falta" EntitySet="falta" />
+          </AssociationSet>
+          <AssociationSet Name="falta_fk2" Association="Self.falta_fk2">
+            <End Role="bimestre" EntitySet="bimestre" />
+            <End Role="falta" EntitySet="falta" />
+          </AssociationSet>
+          <AssociationSet Name="professor_fk" Association="Self.professor_fk">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="professor" EntitySet="professor" />
+          </AssociationSet>
+          <AssociationSet Name="professordisciplina_fk1" Association="Self.professordisciplina_fk1">
+            <End Role="professor" EntitySet="professor" />
+            <End Role="professor_disciplina" EntitySet="professor_disciplina" />
+          </AssociationSet>
+          <AssociationSet Name="professordisciplina_fk2" Association="Self.professordisciplina_fk2">
+            <End Role="disciplina" EntitySet="disciplina" />
+            <End Role="professor_disciplina" EntitySet="professor_disciplina" />
+          </AssociationSet>
+          <AssociationSet Name="professorturma_fk1" Association="Self.professorturma_fk1">
+            <End Role="professor" EntitySet="professor" />
+            <End Role="professor_turma" EntitySet="professor_turma" />
+          </AssociationSet>
+          <AssociationSet Name="professorturma_fk2" Association="Self.professorturma_fk2">
+            <End Role="turma" EntitySet="turma" />
+            <End Role="professor_turma" EntitySet="professor_turma" />
+          </AssociationSet>
+          <AssociationSet Name="usuario_fk" Association="Self.usuario_fk">
+            <End Role="nivel_acesso" EntitySet="nivel_acesso" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="projetoescolaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="aluno">
+          <Key>
+            <PropertyRef Name="ra_aluno" />
+          </Key>
+          <Property Name="ra_aluno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_aluno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="sb_aluno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="dt_nascimento_aluno" Type="DateTime" />
+          <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cd_turma" Type="Int32" />
+          <NavigationProperty Name="turma" Relationship="Self.aluno_fk" FromRole="aluno" ToRole="turma" />
+          <NavigationProperty Name="falta" Relationship="Self.falta_fk1" FromRole="aluno" ToRole="falta" />
+        </EntityType>
+        <EntityType Name="aluno_nota">
+          <Key>
+            <PropertyRef Name="cd_aluno_nota" />
+          </Key>
+          <Property Name="cd_aluno_nota" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ra_aluno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cd_disciplina" Type="Int32" />
+          <Property Name="cd_bimestre" Type="Int32" />
+          <NavigationProperty Name="disciplina" Relationship="Self.alunonota_fk1" FromRole="aluno_nota" ToRole="disciplina" />
+          <NavigationProperty Name="bimestre" Relationship="Self.alunonota_fk2" FromRole="aluno_nota" ToRole="bimestre" />
+        </EntityType>
+        <EntityType Name="auxiliar">
+          <Key>
+            <PropertyRef Name="cpf_auxiliar" />
+          </Key>
+          <Property Name="cpf_auxiliar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_auxiliar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="sb_auxiliar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="dt_nascimento_auxiliar" Type="DateTime" />
+          <Property Name="cd_categoria" Type="Int32" />
+          <NavigationProperty Name="categoria_auxiliar" Relationship="Self.auxiliar_fk" FromRole="auxiliar" ToRole="categoria_auxiliar" />
+        </EntityType>
+        <EntityType Name="bimestre">
+          <Key>
+            <PropertyRef Name="cd_bimestre" />
+          </Key>
+          <Property Name="cd_bimestre" Type="Int32" Nullable="false" />
+          <Property Name="nu_bimestre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="aluno_nota" Relationship="Self.alunonota_fk2" FromRole="bimestre" ToRole="aluno_nota" />
+          <NavigationProperty Name="falta" Relationship="Self.falta_fk2" FromRole="bimestre" ToRole="falta" />
+        </EntityType>
+        <EntityType Name="categoria_auxiliar">
+          <Key>
+            <PropertyRef Name="cd_categoria" />
+          </Key>
+          <Property Name="cd_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dsc_categoria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="auxiliar" Relationship="Self.auxiliar_fk" FromRole="categoria_auxiliar" ToRole="auxiliar" />
+        </EntityType>
+        <EntityType Name="categoria_disciplina">
+          <Key>
+            <PropertyRef Name="cd_categoria_disciplina" />
+          </Key>
+          <Property Name="cd_categoria_disciplina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dsc_categoria_disciplina" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="disciplina" Relationship="Self.disciplina_fk" FromRole="categoria_disciplina" ToRole="disciplina" />
+        </EntityType>
+        <EntityType Name="diretoria">
+          <Key>
+            <PropertyRef Name="cpf_direcao" />
+          </Key>
+          <Property Name="cpf_direcao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_direcao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="sb_direcao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="dt_nascimento_direcao" Type="DateTime" />
+          <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.diretoria_fk" FromRole="diretoria" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="disciplina">
+          <Key>
+            <PropertyRef Name="cd_disciplina" />
+          </Key>
+          <Property Name="cd_disciplina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nm_disciplina" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cd_categoria_disciplina" Type="Int32" />
+          <NavigationProperty Name="aluno_nota" Relationship="Self.alunonota_fk1" FromRole="disciplina" ToRole="aluno_nota" />
+          <NavigationProperty Name="categoria_disciplina" Relationship="Self.disciplina_fk" FromRole="disciplina" ToRole="categoria_disciplina" />
+          <NavigationProperty Name="professor_disciplina" Relationship="Self.professordisciplina_fk2" FromRole="disciplina" ToRole="professor_disciplina" />
+        </EntityType>
+        <EntityType Name="falta">
+          <Key>
+            <PropertyRef Name="cd_falta" />
+          </Key>
+          <Property Name="cd_falta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ra_aluno" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cd_bimestre" Type="Int32" />
+          <Property Name="qtde_falta" Type="Int32" />
+          <NavigationProperty Name="aluno" Relationship="Self.falta_fk1" FromRole="falta" ToRole="aluno" />
+          <NavigationProperty Name="bimestre" Relationship="Self.falta_fk2" FromRole="falta" ToRole="bimestre" />
+        </EntityType>
+        <EntityType Name="nivel_acesso">
+          <Key>
+            <PropertyRef Name="cd_nivel" />
+          </Key>
+          <Property Name="cd_nivel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dsc_nivel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.usuario_fk" FromRole="nivel_acesso" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="professor">
+          <Key>
+            <PropertyRef Name="cpf_professor" />
+          </Key>
+          <Property Name="cpf_professor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_professor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="sb_professor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="dt_nascimento_professor" Type="DateTime" />
+          <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="usuario" Relationship="Self.professor_fk" FromRole="professor" ToRole="usuario" />
+          <NavigationProperty Name="professor_disciplina" Relationship="Self.professordisciplina_fk1" FromRole="professor" ToRole="professor_disciplina" />
+          <NavigationProperty Name="professor_turma" Relationship="Self.professorturma_fk1" FromRole="professor" ToRole="professor_turma" />
+        </EntityType>
+        <EntityType Name="professor_disciplina">
+          <Key>
+            <PropertyRef Name="cd_professor_disciplina" />
+          </Key>
+          <Property Name="cd_professor_disciplina" Type="Int32" Nullable="false" />
+          <Property Name="cpf_professor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cd_disciplina" Type="Int32" />
+          <NavigationProperty Name="disciplina" Relationship="Self.professordisciplina_fk2" FromRole="professor_disciplina" ToRole="disciplina" />
+          <NavigationProperty Name="professor" Relationship="Self.professordisciplina_fk1" FromRole="professor_disciplina" ToRole="professor" />
+        </EntityType>
+        <EntityType Name="professor_turma">
+          <Key>
+            <PropertyRef Name="cd_prof_turma" />
+          </Key>
+          <Property Name="cd_prof_turma" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cpf_professor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cd_turma" Type="Int32" />
+          <NavigationProperty Name="professor" Relationship="Self.professorturma_fk1" FromRole="professor_turma" ToRole="professor" />
+          <NavigationProperty Name="turma" Relationship="Self.professorturma_fk2" FromRole="professor_turma" ToRole="turma" />
+        </EntityType>
+        <EntityType Name="turma">
+          <Key>
+            <PropertyRef Name="cd_turma" />
+          </Key>
+          <Property Name="cd_turma" Type="Int32" Nullable="false" />
+          <Property Name="nu_turma" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sg_turma" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="aluno" Relationship="Self.aluno_fk" FromRole="turma" ToRole="aluno" />
+          <NavigationProperty Name="professor_turma" Relationship="Self.professorturma_fk2" FromRole="turma" ToRole="professor_turma" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="senha" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cd_nivel" Type="Int32" />
+          <Property Name="statuss" Type="Boolean" />
+          <NavigationProperty Name="diretoria" Relationship="Self.diretoria_fk" FromRole="usuario" ToRole="diretoria" />
+          <NavigationProperty Name="nivel_acesso" Relationship="Self.usuario_fk" FromRole="usuario" ToRole="nivel_acesso" />
+          <NavigationProperty Name="professor" Relationship="Self.professor_fk" FromRole="usuario" ToRole="professor" />
+        </EntityType>
+        <Association Name="aluno_fk">
+          <End Role="turma" Type="Self.turma" Multiplicity="0..1" />
+          <End Role="aluno" Type="Self.aluno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="turma">
+              <PropertyRef Name="cd_turma" />
+            </Principal>
+            <Dependent Role="aluno">
+              <PropertyRef Name="cd_turma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="falta_fk1">
+          <End Role="aluno" Type="Self.aluno" Multiplicity="0..1" />
+          <End Role="falta" Type="Self.falta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aluno">
+              <PropertyRef Name="ra_aluno" />
+            </Principal>
+            <Dependent Role="falta">
+              <PropertyRef Name="ra_aluno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="alunonota_fk1">
+          <End Role="disciplina" Type="Self.disciplina" Multiplicity="0..1" />
+          <End Role="aluno_nota" Type="Self.aluno_nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="disciplina">
+              <PropertyRef Name="cd_disciplina" />
+            </Principal>
+            <Dependent Role="aluno_nota">
+              <PropertyRef Name="cd_disciplina" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="alunonota_fk2">
+          <End Role="bimestre" Type="Self.bimestre" Multiplicity="0..1" />
+          <End Role="aluno_nota" Type="Self.aluno_nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bimestre">
+              <PropertyRef Name="cd_bimestre" />
+            </Principal>
+            <Dependent Role="aluno_nota">
+              <PropertyRef Name="cd_bimestre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="auxiliar_fk">
+          <End Role="categoria_auxiliar" Type="Self.categoria_auxiliar" Multiplicity="0..1" />
+          <End Role="auxiliar" Type="Self.auxiliar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria_auxiliar">
+              <PropertyRef Name="cd_categoria" />
+            </Principal>
+            <Dependent Role="auxiliar">
+              <PropertyRef Name="cd_categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="falta_fk2">
+          <End Role="bimestre" Type="Self.bimestre" Multiplicity="0..1" />
+          <End Role="falta" Type="Self.falta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bimestre">
+              <PropertyRef Name="cd_bimestre" />
+            </Principal>
+            <Dependent Role="falta">
+              <PropertyRef Name="cd_bimestre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="disciplina_fk">
+          <End Role="categoria_disciplina" Type="Self.categoria_disciplina" Multiplicity="0..1" />
+          <End Role="disciplina" Type="Self.disciplina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categoria_disciplina">
+              <PropertyRef Name="cd_categoria_disciplina" />
+            </Principal>
+            <Dependent Role="disciplina">
+              <PropertyRef Name="cd_categoria_disciplina" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="diretoria_fk">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="diretoria" Type="Self.diretoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="diretoria">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="professordisciplina_fk2">
+          <End Role="disciplina" Type="Self.disciplina" Multiplicity="0..1" />
+          <End Role="professor_disciplina" Type="Self.professor_disciplina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="disciplina">
+              <PropertyRef Name="cd_disciplina" />
+            </Principal>
+            <Dependent Role="professor_disciplina">
+              <PropertyRef Name="cd_disciplina" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usuario_fk">
+          <End Role="nivel_acesso" Type="Self.nivel_acesso" Multiplicity="0..1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nivel_acesso">
+              <PropertyRef Name="cd_nivel" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="cd_nivel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="professor_fk">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="professor" Type="Self.professor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="professor">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="professordisciplina_fk1">
+          <End Role="professor" Type="Self.professor" Multiplicity="0..1" />
+          <End Role="professor_disciplina" Type="Self.professor_disciplina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="professor">
+              <PropertyRef Name="cpf_professor" />
+            </Principal>
+            <Dependent Role="professor_disciplina">
+              <PropertyRef Name="cpf_professor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="professorturma_fk1">
+          <End Role="professor" Type="Self.professor" Multiplicity="0..1" />
+          <End Role="professor_turma" Type="Self.professor_turma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="professor">
+              <PropertyRef Name="cpf_professor" />
+            </Principal>
+            <Dependent Role="professor_turma">
+              <PropertyRef Name="cpf_professor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="professorturma_fk2">
+          <End Role="turma" Type="Self.turma" Multiplicity="0..1" />
+          <End Role="professor_turma" Type="Self.professor_turma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="turma">
+              <PropertyRef Name="cd_turma" />
+            </Principal>
+            <Dependent Role="professor_turma">
+              <PropertyRef Name="cd_turma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="projEscEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="aluno" EntityType="Self.aluno" />
+          <EntitySet Name="aluno_nota" EntityType="Self.aluno_nota" />
+          <EntitySet Name="auxiliar" EntityType="Self.auxiliar" />
+          <EntitySet Name="bimestre" EntityType="Self.bimestre" />
+          <EntitySet Name="categoria_auxiliar" EntityType="Self.categoria_auxiliar" />
+          <EntitySet Name="categoria_disciplina" EntityType="Self.categoria_disciplina" />
+          <EntitySet Name="diretoria" EntityType="Self.diretoria" />
+          <EntitySet Name="disciplina" EntityType="Self.disciplina" />
+          <EntitySet Name="falta" EntityType="Self.falta" />
+          <EntitySet Name="nivel_acesso" EntityType="Self.nivel_acesso" />
+          <EntitySet Name="professor" EntityType="Self.professor" />
+          <EntitySet Name="professor_disciplina" EntityType="Self.professor_disciplina" />
+          <EntitySet Name="professor_turma" EntityType="Self.professor_turma" />
+          <EntitySet Name="turma" EntityType="Self.turma" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" />
+          <AssociationSet Name="aluno_fk" Association="Self.aluno_fk">
+            <End Role="turma" EntitySet="turma" />
+            <End Role="aluno" EntitySet="aluno" />
+          </AssociationSet>
+          <AssociationSet Name="falta_fk1" Association="Self.falta_fk1">
+            <End Role="aluno" EntitySet="aluno" />
+            <End Role="falta" EntitySet="falta" />
+          </AssociationSet>
+          <AssociationSet Name="alunonota_fk1" Association="Self.alunonota_fk1">
+            <End Role="disciplina" EntitySet="disciplina" />
+            <End Role="aluno_nota" EntitySet="aluno_nota" />
+          </AssociationSet>
+          <AssociationSet Name="alunonota_fk2" Association="Self.alunonota_fk2">
+            <End Role="bimestre" EntitySet="bimestre" />
+            <End Role="aluno_nota" EntitySet="aluno_nota" />
+          </AssociationSet>
+          <AssociationSet Name="auxiliar_fk" Association="Self.auxiliar_fk">
+            <End Role="categoria_auxiliar" EntitySet="categoria_auxiliar" />
+            <End Role="auxiliar" EntitySet="auxiliar" />
+          </AssociationSet>
+          <AssociationSet Name="falta_fk2" Association="Self.falta_fk2">
+            <End Role="bimestre" EntitySet="bimestre" />
+            <End Role="falta" EntitySet="falta" />
+          </AssociationSet>
+          <AssociationSet Name="disciplina_fk" Association="Self.disciplina_fk">
+            <End Role="categoria_disciplina" EntitySet="categoria_disciplina" />
+            <End Role="disciplina" EntitySet="disciplina" />
+          </AssociationSet>
+          <AssociationSet Name="diretoria_fk" Association="Self.diretoria_fk">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="diretoria" EntitySet="diretoria" />
+          </AssociationSet>
+          <AssociationSet Name="professordisciplina_fk2" Association="Self.professordisciplina_fk2">
+            <End Role="disciplina" EntitySet="disciplina" />
+            <End Role="professor_disciplina" EntitySet="professor_disciplina" />
+          </AssociationSet>
+          <AssociationSet Name="usuario_fk" Association="Self.usuario_fk">
+            <End Role="nivel_acesso" EntitySet="nivel_acesso" />
+            <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="professor_fk" Association="Self.professor_fk">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="professor" EntitySet="professor" />
+          </AssociationSet>
+          <AssociationSet Name="professordisciplina_fk1" Association="Self.professordisciplina_fk1">
+            <End Role="professor" EntitySet="professor" />
+            <End Role="professor_disciplina" EntitySet="professor_disciplina" />
+          </AssociationSet>
+          <AssociationSet Name="professorturma_fk1" Association="Self.professorturma_fk1">
+            <End Role="professor" EntitySet="professor" />
+            <End Role="professor_turma" EntitySet="professor_turma" />
+          </AssociationSet>
+          <AssociationSet Name="professorturma_fk2" Association="Self.professorturma_fk2">
+            <End Role="turma" EntitySet="turma" />
+            <End Role="professor_turma" EntitySet="professor_turma" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="projetoescolaModelStoreContainer" CdmEntityContainer="projEscEntities">
+          <EntitySetMapping Name="aluno">
+            <EntityTypeMapping TypeName="projetoescolaModel.aluno">
+              <MappingFragment StoreEntitySet="aluno">
+                <ScalarProperty Name="ra_aluno" ColumnName="ra_aluno" />
+                <ScalarProperty Name="nm_aluno" ColumnName="nm_aluno" />
+                <ScalarProperty Name="sb_aluno" ColumnName="sb_aluno" />
+                <ScalarProperty Name="dt_nascimento_aluno" ColumnName="dt_nascimento_aluno" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="cd_turma" ColumnName="cd_turma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="aluno_nota">
+            <EntityTypeMapping TypeName="projetoescolaModel.aluno_nota">
+              <MappingFragment StoreEntitySet="aluno_nota">
+                <ScalarProperty Name="cd_aluno_nota" ColumnName="cd_aluno_nota" />
+                <ScalarProperty Name="ra_aluno" ColumnName="ra_aluno" />
+                <ScalarProperty Name="cd_disciplina" ColumnName="cd_disciplina" />
+                <ScalarProperty Name="cd_bimestre" ColumnName="cd_bimestre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="auxiliar">
+            <EntityTypeMapping TypeName="projetoescolaModel.auxiliar">
+              <MappingFragment StoreEntitySet="auxiliar">
+                <ScalarProperty Name="cpf_auxiliar" ColumnName="cpf_auxiliar" />
+                <ScalarProperty Name="nm_auxiliar" ColumnName="nm_auxiliar" />
+                <ScalarProperty Name="sb_auxiliar" ColumnName="sb_auxiliar" />
+                <ScalarProperty Name="dt_nascimento_auxiliar" ColumnName="dt_nascimento_auxiliar" />
+                <ScalarProperty Name="cd_categoria" ColumnName="cd_categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bimestre">
+            <EntityTypeMapping TypeName="projetoescolaModel.bimestre">
+              <MappingFragment StoreEntitySet="bimestre">
+                <ScalarProperty Name="cd_bimestre" ColumnName="cd_bimestre" />
+                <ScalarProperty Name="nu_bimestre" ColumnName="nu_bimestre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categoria_auxiliar">
+            <EntityTypeMapping TypeName="projetoescolaModel.categoria_auxiliar">
+              <MappingFragment StoreEntitySet="categoria_auxiliar">
+                <ScalarProperty Name="cd_categoria" ColumnName="cd_categoria" />
+                <ScalarProperty Name="dsc_categoria" ColumnName="dsc_categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categoria_disciplina">
+            <EntityTypeMapping TypeName="projetoescolaModel.categoria_disciplina">
+              <MappingFragment StoreEntitySet="categoria_disciplina">
+                <ScalarProperty Name="cd_categoria_disciplina" ColumnName="cd_categoria_disciplina" />
+                <ScalarProperty Name="dsc_categoria_disciplina" ColumnName="dsc_categoria_disciplina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="diretoria">
+            <EntityTypeMapping TypeName="projetoescolaModel.diretoria">
+              <MappingFragment StoreEntitySet="diretoria">
+                <ScalarProperty Name="cpf_direcao" ColumnName="cpf_direcao" />
+                <ScalarProperty Name="nm_direcao" ColumnName="nm_direcao" />
+                <ScalarProperty Name="sb_direcao" ColumnName="sb_direcao" />
+                <ScalarProperty Name="dt_nascimento_direcao" ColumnName="dt_nascimento_direcao" />
+                <ScalarProperty Name="username" ColumnName="username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="disciplina">
+            <EntityTypeMapping TypeName="projetoescolaModel.disciplina">
+              <MappingFragment StoreEntitySet="disciplina">
+                <ScalarProperty Name="cd_disciplina" ColumnName="cd_disciplina" />
+                <ScalarProperty Name="nm_disciplina" ColumnName="nm_disciplina" />
+                <ScalarProperty Name="cd_categoria_disciplina" ColumnName="cd_categoria_disciplina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="falta">
+            <EntityTypeMapping TypeName="projetoescolaModel.falta">
+              <MappingFragment StoreEntitySet="falta">
+                <ScalarProperty Name="cd_falta" ColumnName="cd_falta" />
+                <ScalarProperty Name="ra_aluno" ColumnName="ra_aluno" />
+                <ScalarProperty Name="cd_bimestre" ColumnName="cd_bimestre" />
+                <ScalarProperty Name="qtde_falta" ColumnName="qtde_falta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nivel_acesso">
+            <EntityTypeMapping TypeName="projetoescolaModel.nivel_acesso">
+              <MappingFragment StoreEntitySet="nivel_acesso">
+                <ScalarProperty Name="cd_nivel" ColumnName="cd_nivel" />
+                <ScalarProperty Name="dsc_nivel" ColumnName="dsc_nivel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="professor">
+            <EntityTypeMapping TypeName="projetoescolaModel.professor">
+              <MappingFragment StoreEntitySet="professor">
+                <ScalarProperty Name="cpf_professor" ColumnName="cpf_professor" />
+                <ScalarProperty Name="nm_professor" ColumnName="nm_professor" />
+                <ScalarProperty Name="sb_professor" ColumnName="sb_professor" />
+                <ScalarProperty Name="dt_nascimento_professor" ColumnName="dt_nascimento_professor" />
+                <ScalarProperty Name="username" ColumnName="username" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="professor_disciplina">
+            <EntityTypeMapping TypeName="projetoescolaModel.professor_disciplina">
+              <MappingFragment StoreEntitySet="professor_disciplina">
+                <ScalarProperty Name="cd_professor_disciplina" ColumnName="cd_professor_disciplina" />
+                <ScalarProperty Name="cpf_professor" ColumnName="cpf_professor" />
+                <ScalarProperty Name="cd_disciplina" ColumnName="cd_disciplina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="professor_turma">
+            <EntityTypeMapping TypeName="projetoescolaModel.professor_turma">
+              <MappingFragment StoreEntitySet="professor_turma">
+                <ScalarProperty Name="cd_prof_turma" ColumnName="cd_prof_turma" />
+                <ScalarProperty Name="cpf_professor" ColumnName="cpf_professor" />
+                <ScalarProperty Name="cd_turma" ColumnName="cd_turma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="turma">
+            <EntityTypeMapping TypeName="projetoescolaModel.turma">
+              <MappingFragment StoreEntitySet="turma">
+                <ScalarProperty Name="cd_turma" ColumnName="cd_turma" />
+                <ScalarProperty Name="nu_turma" ColumnName="nu_turma" />
+                <ScalarProperty Name="sg_turma" ColumnName="sg_turma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="projetoescolaModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="senha" ColumnName="senha" />
+                <ScalarProperty Name="cd_nivel" ColumnName="cd_nivel" />
+                <ScalarProperty Name="statuss" ColumnName="statuss" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

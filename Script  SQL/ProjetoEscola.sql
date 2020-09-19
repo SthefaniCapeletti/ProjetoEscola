@@ -214,4 +214,13 @@ INSERT INTO Diretoria(cpf_direcao,nm_direcao,sb_direcao,dt_nascimento_direcao,us
 VALUES('111.111.111-11','Ana','Martinelli','1978-09-05','diretoria111');
 
 
-CATEGORIA_AUXILIAR
+INSERT INTO Categoria_Auxiliar(dsc_categoria)
+VALUES('Fachineiro(a)');
+INSERT INTO Categoria_Auxiliar(dsc_categoria)
+VALUES('Fachineiro(a)');
+INSERT INTO Categoria_Auxiliar(dsc_categoria)
+VALUES('Cozinheiro(a)');
+INSERT INTO Categoria_Auxiliar(dsc_categoria)
+VALUES('Inspetor(a)');
+INSERT INTO Categoria_Auxiliar(dsc_categoria)
+VALUES('Vendedor(a)');
