@@ -19,7 +19,7 @@ namespace ProjetoEscola.Models
         [Required(ErrorMessage = "Informe a data de nascimento...")]
         public DateTime DataNascimento { get; set; }
 
-        [Required(ErrorMessage = "Informe o código da categoria...")]
+        [Required(ErrorMessage = "Informe a categoria...")]
         public int CodigoCategoria { get; set; }
     }
 
@@ -37,7 +37,7 @@ namespace ProjetoEscola.Models
         [Required(ErrorMessage = "Informe a data de nascimento...")]
         public DateTime DataNascimento { get; set; }
 
-        [Required(ErrorMessage = "Informe o código da categoria...")]
+        [Required(ErrorMessage = "Informe a categoria...")]
         public int CodigoCategoria { get; set; }
     }
 }

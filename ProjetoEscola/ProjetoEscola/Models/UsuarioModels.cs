@@ -14,7 +14,7 @@ namespace ProjetoEscola.Models
         [Required(ErrorMessage = "Informe a senha...")]
         public String Senha { get; set; }
 
-        [Required(ErrorMessage = "Informe o código de nivel de acesso...")]
+        [Required(ErrorMessage = "Informe o nivel de acesso...")]
         public int CodigoNivelAcesso { get; set; }
 
         [Required(ErrorMessage = "Informe o status de atividade")]

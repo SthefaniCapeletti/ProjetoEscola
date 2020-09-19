@@ -42,7 +42,7 @@ namespace ProjetoEscola.Models
   
         public String Username { get; set; }
 
-        [Required(ErrorMessage = "Informe o código da turma...")]
+        [Required(ErrorMessage = "Informe a turma...")]
         public int CodigoTurma { get; set; }
     }
 }

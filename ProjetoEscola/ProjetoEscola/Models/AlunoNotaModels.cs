@@ -19,6 +19,9 @@ namespace ProjetoEscola.Models
 
         [Required(ErrorMessage = "Informe o código do bimestre...")]
         public int CodigoBimestre { get; set; }
+
+        [Required(ErrorMessage = "Informe a nota...")]
+        public float Nota { get; set; }
     }
 
     public class AlunoNotaEditModels
@@ -34,5 +37,8 @@ namespace ProjetoEscola.Models
 
         [Required(ErrorMessage = "Informe o código do bimestre...")]
         public int CodigoBimestre { get; set; }
+
+        [Required(ErrorMessage = "Informe a nota...")]
+        public float Nota { get; set; }
     }
 }
