@@ -18,6 +18,7 @@ namespace ProjetoEscola
         public string ra_aluno { get; set; }
         public Nullable<int> cd_disciplina { get; set; }
         public Nullable<int> cd_bimestre { get; set; }
+        public Nullable<float> nota { get; set; }
     
         public virtual disciplina disciplina { get; set; }
         public virtual bimestre bimestre { get; set; }

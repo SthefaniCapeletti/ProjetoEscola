@@ -120,10 +120,13 @@ CREATE TABLE Aluno_Nota(
     ra_aluno VARCHAR(100),
     cd_disciplina INT,
     cd_bimestre INT,
+    nota FLOAT,
     CONSTRAINT alunonota_pk PRIMARY KEY(cd_aluno_nota),
     CONSTRAINT alunonota_fk1 FOREIGN KEY(cd_disciplina) REFERENCES Disciplina(cd_disciplina),
     CONSTRAINT alunonota_fk2 FOREIGN KEY(cd_bimestre) REFERENCES Bimestre(cd_bimestre)
 );
+
+
 
 CREATE TABLE Falta(
 	cd_falta INT auto_increment,
